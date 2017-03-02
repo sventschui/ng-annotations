@@ -11,14 +11,14 @@ import {inject} from 'src/decorators/utils/inject';
  *
  * @returns {Function}
  */
-export default function NgComponent(name = '') {
+export default function NgComponent(name = '', templateUrl) {
 	return (target) => {
 		name = name || target.name;
 
 		var component = function(...injections) {
 			let instance = new target(...injections);
 			utils.applyTransformations(target, instance, injections);
-            return instance;
+            		return instance;
 		}
 
 		if(!(target.$inject instanceof Array) || target.$inject.length === 0) {
@@ -28,6 +28,9 @@ export default function NgComponent(name = '') {
 		}
 
 		utils.addDeclareMethod(target);
-		utils.defineComponent(target, name, 'component', component);
+		utils.defineComponent(target, name, 'component', { 
+			templateUrl, 
+			controller: component 
+		});
 	}
 }
