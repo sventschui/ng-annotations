@@ -26,11 +26,10 @@ This library was build with webpack in mind but should works well with the other
 	* [@run](#d_run)
 	* [@filter](#d_filter)
 	* [@decorator](#d_decorator)
+	* [component](#d_component)
 * [Wrappers](#wrappers):
 	* [constant](#d_constant)
 	* [value](#d_value)
-* [Composites](#composites):
-	* [component](#c_component)
 * [Modify and build](#modifBuild)
 
 ------------
@@ -671,37 +670,6 @@ angular.module('...')
 
 
 
-## <a name="wrappers">Wrappers</a>
-> the *Value* and *Constant* components can't be replaced by a class.  
-> In order to simplify their declaration two wrappers are available.
-
-###<a name="d_constant">`constant`</a>
-#### Params:
- - **name**:    String.   constant name.
- - **value**:    Mix.   constant value.
-
-#### Usage:
-````javascript
-import {constant} from 'node_modules/ng-annotations';
-
-export default constant('name', 'a constant');
-````
-###<a name="d_value">`value`</a>
-#### Params:
- - **name**:    String.   value name.
- - **value**:    Mix.   value value.
-
-#### Usage:
-````javascript
-import {value} from 'node_modules/ng-annotations';
-
-export default value('name', 'a value');
-````
-
-## <a name="composites">Composites</a>
-> The composites decorators aren't simple angular component wrappers like above, they implement new concepts on top of Angular 1.
-
-
 ###<a name="c_component">`@component`</a>
 > This decorator declares the given class as a controller and creates an associated directive
 
@@ -711,15 +679,7 @@ export default value('name', 'a value');
 
 #### type: *function*
 #### Params:
- - **options**: *(Mandatory)*    Object.   component options.
-	- **selector**: *(Mandatory)*    String.   directive's name
-	- **alias**: *(Optional)*    String.   controllerAs option, defaults to the selector value
-	- **type**: *(Optional)*    String.   directive's restrict option, defaults to `E`
-	- **ioProps**: *(Optional)*    Object.   the scope properties, all props are bind with the `=` operator (two way binding)
-	- **template**: *(Optional)*    Any.   directive's template option
-	- **templateUrl**: *(Optional)*    Any.   directive's templateUrl option
-	- **transclude**: *(Optional)*    Boolean.   directive's transclude option
-	- **lifecycle**: *(Optional)*    Object   array of callbacks, the available hooks are `compile`, `prelink` and `postlink`
+ - TODO
 
 > the component decorator injects a $ioProps property to the working class. It contains the scope properties
 
@@ -749,6 +709,34 @@ export default class MyComponent {
 		console.log(`Hello ${this.$ioProps.name}`);
 	}
 }
+````
+
+
+## <a name="wrappers">Wrappers</a>
+> the *Value* and *Constant* components can't be replaced by a class.  
+> In order to simplify their declaration two wrappers are available.
+
+###<a name="d_constant">`constant`</a>
+#### Params:
+ - **name**:    String.   constant name.
+ - **value**:    Mix.   constant value.
+
+#### Usage:
+````javascript
+import {constant} from 'node_modules/ng-annotations';
+
+export default constant('name', 'a constant');
+````
+###<a name="d_value">`value`</a>
+#### Params:
+ - **name**:    String.   value name.
+ - **value**:    Mix.   value value.
+
+#### Usage:
+````javascript
+import {value} from 'node_modules/ng-annotations';
+
+export default value('name', 'a value');
 ````
 
 ### <a name="modifBuild">Modify and build</a>
